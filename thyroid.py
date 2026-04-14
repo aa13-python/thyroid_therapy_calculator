@@ -16,15 +16,19 @@ st.divider()
 # --- Logic & Inputs ---
 if diagnosis == "Graves Disease":
     col1, col2, col3 = st.columns(3)
+    # Using st.latex for a centered, dedicated math block
+    st.latex(r'''
+             Dose\ (mCi) = \frac{Thyroid\ Mass\ (g) \times 0.08 - 0.22 (mCi/g)}{24hr\ Thyroid\ Uptake\ (\%)} \times 100\ (\%)
+             ''')
     with col1:
         weight = st.number_input("Gland Weight (g)", min_value=0.0, value=20.0, help="Normal is 15-20g")
     with col2:
-        mci_g = st.number_input("mCi/g", min_value=0.0, max_value=0.5, value=0.150, format="%.3f", help="0.125 Small | 0.150 Medium | 0.200 Large")
+        mci_g = st.number_input("mCi/g", min_value=0.0, max_value=0.2, value=0.150, format="%.3f", help="0.125 Small | 0.150 Medium | 0.200 Large Goiter")
     with col3:
-        uptake = st.number_input("% Uptake (24hr)", min_value=1.0, max_value=100.0, value=45.0)
+        uptake = st.number_input("% Uptake (24hr)", min_value=0.0, max_value=100.0, value=45.0)
 
     if st.button("Calculate Dose"):
-        # Formula: (Weight * mCi/g) / (Uptake decimal)
+        # Formula: (Weight * mCi/g) / (Uptake in %)
         dose = (weight * mci_g) / (uptake / 100)
         st.metric("Recommended Dose", f"{dose:.2f} mCi")
 
@@ -33,7 +37,7 @@ elif diagnosis == "Toxic Multinodular Goiter":
     with col1:
         weight = st.number_input("Gland Weight (g)", min_value=0.0, value=30.0)
     with col2:
-        uptake = st.number_input("% Uptake (24hr)", min_value=1.0, max_value=100.0, value=30.0)
+        uptake = st.number_input("% Uptake (24hr)", min_value=0.0, max_value=100.0, value=30.0)
     
     if st.button("Calculate Dose"):
         # Fixed mCi/g at 0.200 for TMNG
@@ -51,9 +55,9 @@ elif diagnosis == "Thyroid Cancer":
     )
     
     cancer_map = {
-        "Remnant Ablation": "100 mCi",
+        "Remnant Ablation": "30 mCi to 100 mCi",
         "Regional Nodal Disease": "150 mCi",
-        "Metastases (Lungs or Bones)": "200 mCi"
+        "Metastases (Lungs or Bones)": "200 mCi or higher"
     }
     
     if st.button("Show Recommendation"):
