@@ -2,7 +2,7 @@ import streamlit as st
 
 st.title("Thyroid Therapy Calculator")
 st.caption("Calculator made by Dr.AA")
-st.caption("This is for educational purposes only.")
+st.caption("This is for educational purposes only. Have a nice day!")
 
 weight  = st.number_input("Weight of gland (g) - normal 15-20", min_value=0.0, value=0.0)
 mci_g   = st.number_input("mCi/g (0.125 small | 0.150 medium | 0.200 large)",
