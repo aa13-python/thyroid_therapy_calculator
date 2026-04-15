@@ -18,7 +18,7 @@ if diagnosis == "Graves Disease":
     col1, col2, col3 = st.columns(3)
     # Using st.latex for a centered, dedicated math block
     st.latex(r'''
-             Dose\ (mCi) = \frac{Thyroid\ Mass\ (g) \times 0.08 - 0.22 (mCi/g)}{24hr\ Thyroid\ Uptake\ (\%)} \times 100\ (\%)
+             Dose\ (mCi) = \frac{Thyroid\ Mass\ (g) \times [0.08\ to\ 0.22 (mCi/g)]}{24hr\ Thyroid\ Uptake\ (\%)} \times 100\ (\%)
              ''')
     with col1:
         weight = st.number_input("Gland Weight (g)", min_value=0.0, value=20.0, help="Normal is 15-20g")
