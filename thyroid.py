@@ -2,7 +2,7 @@ import streamlit as st
 
 # --- UI Header ---
 st.set_page_config(page_title="Thyroid Therapy Calculator by Aggarwal", page_icon="🧪")
-st.title("Thyroid Therapy Calculator by Aggarwal")
+st.title("Thyroid Therapy Calculator by Dr.AA")
 st.caption("Developed by Dr. AA | For educational purposes only.")
 st.caption("Have a nice day! 😊")
 
