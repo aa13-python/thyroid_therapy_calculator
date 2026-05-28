@@ -9,13 +9,40 @@ st.caption("Have a nice day! 😊")
 # --- Selection ---
 diagnosis = st.selectbox(
     "Select Diagnosis:",
-    ["Graves Disease", "Toxic Multinodular Goiter", "Toxic Nodule", "Thyroid Cancer"]
+    ["Thyroid Weight Calculation", "Graves Disease", "Toxic Multinodular Goiter", "Toxic Nodule", "Thyroid Cancer"]
 )
 
 st.divider()
 
 # --- Logic & Inputs ---
-if diagnosis == "Graves Disease":
+if diagnosis == "Thyroid Weight Calculation":
+    st.subheader("Thyroid Volume & Weight Approximation")
+    st.caption("standard ellipsoid formula for organ volume estimation")
+    st.latex(r"V_{total} = \sum_{lobe=R,L} \left( \frac{\pi}{6} \times W \times D \times H \right)")
+    st.markdown(r"*(Approximation: $1 \text{ ml} = 1 \text{ g}$)*")
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.write("**Right Lobe (cm)**")
+        w_r = st.number_input("Width (R)", 0.0, 10.0, 1.5, key="w_r")
+        d_r = st.number_input("Depth (R)", 0.0, 10.0, 1.0, key="d_r")
+        h_r = st.number_input("Height (R)", 0.0, 10.0, 4.0, key="h_r")
+    with col2:
+        st.write("**Left Lobe (cm)**")
+        w_l = st.number_input("Width (L)", 0.0, 10.0, 1.5, key="w_l")
+        d_l = st.number_input("Depth (L)", 0.0, 10.0, 1.0, key="d_l")
+        h_l = st.number_input("Height (L)", 0.0, 10.0, 4.0, key="h_l")
+
+    # Calculation logic
+    vol_r = (3.14159 / 6) * w_r * d_r * h_r
+    vol_l = (3.14159 / 6) * w_l * d_l * h_l
+    total_vol = vol_r + vol_l
+    
+    st.divider()
+    st.metric("Total Thyroid Volume", f"{total_vol:.2f} ml")
+    st.metric("Estimated Thyroid Weight", f"{total_vol:.2f} g")
+
+elif diagnosis == "Graves Disease":
     col1, col2, col3 = st.columns(3)
     # Using st.latex for a centered, dedicated math block
     st.latex(r'''
@@ -47,7 +74,7 @@ elif diagnosis == "Toxic Multinodular Goiter":
 
 elif diagnosis == "Toxic Nodule":
     st.info("Toxic nodules typically require higher fixed doses to suppress the autonomous nodule.")
-    st.success("Suggested Empirical Dose: **15-20 mCi for small nodules, and 25 mCi for large nodule**")
+    st.success("Suggested Empirical Dose: **15-20 mCi for small nodule, and 25 mCi for large nodule**")
 
 elif diagnosis == "Thyroid Cancer":
     indication = st.radio(
