@@ -47,7 +47,7 @@ elif diagnosis == "Toxic Multinodular Goiter":
 
 elif diagnosis == "Toxic Nodule":
     st.info("Toxic nodules typically require higher fixed doses to suppress the autonomous nodule.")
-    st.success("Suggested Empirical Dose: **20 mCi to 25 mCi**")
+    st.success("Suggested Empirical Dose: **15-20 mCi for small nodules, and 25 mCi for large nodule**")
 
 elif diagnosis == "Thyroid Cancer":
     indication = st.radio(
