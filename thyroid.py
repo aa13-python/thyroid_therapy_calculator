@@ -50,10 +50,10 @@ if diagnosis == "Thyroid Weight Calculation":
             "Not palpable, not visible",
             "Palpable but not visible, even with neck extension",
             "Palpable and visible with neck extension",
-            "Visible without palpation needed",
+            "Visible without neck extension",
             "Visible at a distance"
         ],
-        "Approximate Weight (g)": ["~15–20 g (normal)", "~20–30 g", "~30–40 g", "~40–80 g", ">80 g"]
+        "Approximate Weight (g)": ["~15–20 g (normal)", "~20-30 g", "~30–40 g", "~40–80 g", "~80 g or more"]
     }
     st.table(pd.DataFrame(grading_data))
 
@@ -91,7 +91,7 @@ elif diagnosis == "Toxic Multinodular Goiter":
 elif diagnosis == "Toxic Nodule":
     st.subheader("Toxic Nodule")
     st.info("Toxic nodule typically requires a higher fixed dose to suppress the autonomous nodule.")
-    st.success("Suggested Empirical Dose: **15-20 mCi for small toxic nodule (<3cm), and 25 mCi for large nodule (>3cm)**")
+    st.success("Suggested Empirical Dose: **15-20 mCi for small toxic nodule (<4cm), and 20-25 mCi for large nodule (>4cm)**")
 
 elif diagnosis == "Thyroid Cancer":
     st.subheader("Thyroid Cancer Therapy")
